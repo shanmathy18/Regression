@@ -1,0 +1,17 @@
+Application: Kushals
+Scenario: scenario1
+@uidajxvfs0ip82i
+@test001
+Scenario Outline: verify scenario1
+Given I have access to Kushals application
+When I clicked Necklaces in Online Shopping India
+And I clicked Antique Mala 139608 in Online Shopping India
+And I clicked Antique Mala 139608 in Online Shopping India
+And I clicked Antique Chain Antique Mala 139608 in Online Shopping India
+And I clicked Close in Online Shopping India
+And I clicked Necklaces in kushals
+And I clicked Antique Necklace 162824 in kushals
+And I clicked Antique Necklace Antique Necklace 162824 in kushals
+Examples:
+| SlNo. |
+| 1     |

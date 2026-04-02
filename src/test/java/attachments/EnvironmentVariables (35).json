@@ -1,0 +1,29 @@
+{
+  "values": [
+    {
+      "value": "https://algoshack.net/",
+      "id": "c135b2fd-efad-46ee-89c2-c29117316c65",
+      "key": "Bease_URL1"
+    },
+    {
+      "value": "https://api.example.com",
+      "id": "659b3e9a-7b90-49cd-b896-7fee5cb95d32",
+      "key": "baseUrl"
+    },
+    {
+      "value": "0976",
+      "id": "36f63735-8a7c-40f9-9724-1cc65cb984bf",
+      "key": "userId"
+    },
+    {
+      "value": "algoshack",
+      "id": "1231e346-62ce-48f3-8e67-d1f553293d08",
+      "key": "upadate1"
+    },
+    {
+      "value": "value",
+      "id": "dc5a873f-63c3-4c25-bd06-12065c7bf875",
+      "key": "testtttt"
+    }
+  ]
+}

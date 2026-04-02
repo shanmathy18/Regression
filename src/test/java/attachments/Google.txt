@@ -1,0 +1,54 @@
+Application: Google
+Scenario: scenario1
+@uidazmexlj9jv6t
+@test001
+Scenario Outline: verify scenario1
+Given I have access to Google application
+When I clicked Search for Products Brands and More in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked in Wrist Watches in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked SONATAPoze Analog Watch  For Women SP80096WM01WINR2052INR256520 offBan in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked SONATA in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Poze Analog Watch  For Women SP80096WM01W in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Special price in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked INR2565 in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked INR1952  in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 5 ratings and 0 reviews in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Coupons for you in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Available offers in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked TC in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Bank Offer in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Bank Offer in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 100 Cashback upto 500Rs on Axis Bank SuperMoney Rupay CC UPI transacti in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Flat INR750 on HDFC Bank Pixel Credit Card EMI on 6 months tenure Min  in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 5 Unlimited Cashback on Flipkart Axis Bank Credit Card in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I selected GO TO CART in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked SONATA Poze Poze Analog Watch  For Women in Online Shopping Site for Mobiles Electronics Furniture Groce
+Examples:
+| SlNo. |
+| 1     |
+
+Scenario: scenario2
+@uidaq923mm07gan
+@test002
+Scenario Outline: verify scenario 2
+Given I have access to Google application
+When I clicked Electronics in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Mi in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Xiaomi 14 CIVI Cruise Blue 512 GB in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Xiaomi 14 CIVI Cruise Blue 512 GB 12 GB RAM in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 680 Ratings in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked INR38999 in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked  INR109 Secured Packaging Fee in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked INR38899  in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Available offers in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 100 Cashback upto 500Rs on Axis Bank SuperMoney Rupay CC UPI transacti in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 5 Unlimited Cashback on Flipkart Axis Bank Credit Card in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 5 cashback on Axis Bank Flipkart Debit Card up to INR750 in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Get extra INR21000 off price inclusive of cashbackcoupon in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked Buy without Exchange in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked INR38999 in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 1 Year Manufacturer Warranty for Phone and 6 Months Warranty for In th in Online Shopping Site for Mobiles Electronics Furniture Groce
+And I clicked 12 GB in Online Shopping Site for Mobiles Electronics Furniture Groce
+Examples:
+| SlNo. |
+| 1     |

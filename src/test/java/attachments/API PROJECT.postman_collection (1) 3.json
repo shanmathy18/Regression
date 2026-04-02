@@ -1,0 +1,4262 @@
+{
+	"info": {
+		"_postman_id": "80b2f4c4-13a0-4a97-8241-5f0566802825",
+		"name": "API PROJECT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27833313",
+		"_collection_link": "https://orange-comet-508854.postman.co/workspace/New-Team-Workspace~a5c950a8-276b-497f-a32e-7808cae70b9d/collection/27833313-80b2f4c4-13a0-4a97-8241-5f0566802825?action=share&source=collection_link&creator=27833313"
+	},
+	"item": [
+		{
+			"name": "Login profile",
+			"item": [
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/user/logout/",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"user",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code 200\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"pm.test(\"successfully login message\",function(){\r",
+									"    responsejson=pm.response.json();\r",
+									"    pm.expect(responsejson.message).to.eq('User signed in successfully');\r",
+									"})\r",
+									"var responseaccess=pm.response.json();\r",
+									"pm.globals.set(\"accessToken\",responseaccess.accessToken);\r",
+									"pm.globals.set(\"User_Name\",responseaccess.user.fristname);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user\":{\"email\":\"anusha.m@algoshack.com\",\"password\":\"eyJhbGciOiJIUzI1NiJ9.U2VldGhhQDIybWFoZXNo.Ig47ZFACgigO8IdxG2xqGiWilaQVTw22ImCWsNPzTJs\"}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/user/login/",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "create project",
+			"item": [
+				{
+					"name": "Create Project API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"var response=pm.response.json();\r",
+									"pm.globals.set(\"project_id\",response.projectDetails.project_id);\r",
+									"pm.globals.set(\"id\",response.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"form\":{\"project_id\":\"40\",\"project_name\":\"{{$randomFirstName}}\",\"Configuration_Data\":\"\",\"Configuration_Path\":\"\",\"User_Id\":\"1\",\"Updated_By\":\"\",\"project_url\":\"https://www.algoshack.com/\",\"home_page\":\"Home Page\",\"application_type_id\":5,\"application_domain_id\":1,\"customer_id\":1,\"settings\":{}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/create_project",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"create_project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project notification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/notification/addNotification",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"notification",
+								"addNotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access setting for Crate API project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":750,\"projectId\":{{id}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/checkAccessSettingStatus",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"checkAccessSettingStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/project/get_projects/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"get_projects",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search API project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "limit=5&offset=1&search=",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/get_projects/{{id}}?limit=5&offset=1&search=",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"get_projects",
+								"{{id}}"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
+									"value": "1"
+								},
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "create collection",
+			"item": [
+				{
+					"name": "Create collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"enable\":false,\"collection_name\":\"Collection123\",\"projectId\":\"{{id}}\",\"colletion\":[]}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/collections",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"collections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection Api",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getCollections/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getCollections",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"enable\":false,\"name\":\"testing\",\"request\":{\"auth\":{},\"method\":\"get\",\"url\":null,\"params\":[],\"header\":[],\"body\":{}},\"Output\":\"NA\",\"storeResponseVariable\":\"NA\",\"dataGeneration\":\"NA\",\"scenario_outline\":\"\",\"custom_tag\":\"\",\"projectId\":\"{{id}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/addApiByCollections/3227",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"addApiByCollections",
+								"3227"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getCollections/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getCollections",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"enable\":0,\"collection_name\":\"Collection\",\"projectId\":\"22161\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateCollection/3227",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateCollection",
+								"3227"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit collection requestAPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getApiByCollectionId/3227",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getApiByCollectionId",
+								"3227"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Collection API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getCollections/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getCollections",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create separate featurefile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":3227,\"featureFileName\":\"testing inn\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/setFeatureFileName",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"setFeatureFileName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "separate collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getCollections/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getCollections",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/deleteCollection/3258",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"deleteCollection",
+								"3258"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Request",
+			"item": [
+				{
+					"name": "request edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"{{id}}\",\"enable\":0,\"name\":\"testingytes\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateApi/37773",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateApi",
+								"37773"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/deleteApi/37773",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"deleteApi",
+								"37773"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Requestdeleting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getApiByCollectionId/3227",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getApiByCollectionId",
+								"3227"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "poject collection request delete",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getCollections/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getCollections",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload file",
+			"item": [
+				{
+					"name": "upload file",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "filePath=../AlgoQA_Data/user_750/project_{{id}}/Configuration&filename=Chaining%20multi%20form%20data%20Copy.postman_collection.json&projectid=22161",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/uploadApi?filePath=../AlgoQA_Data/user_750/project_{{id}}Configuration&filename=Chaining%20multi%20form%20data%20Copy.postman_collection.json&projectid={{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"uploadApi"
+							],
+							"query": [
+								{
+									"key": "filePath",
+									"value": "../AlgoQA_Data/user_750/project_{{id}}Configuration"
+								},
+								{
+									"key": "filename",
+									"value": "Chaining%20multi%20form%20data%20Copy.postman_collection.json"
+								},
+								{
+									"key": "projectid",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uploading project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getCollections/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getCollections",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "expand the collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getApiByCollectionId/3259",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getApiByCollectionId",
+								"3259"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send click",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"method\":\"post\",\"url\":\"https://algoshack.net/user/login/\",\"headers\":{\"Content-Type\":\"application/json\"},\"body\":{\"type\":\"raw\",\"raw\":{\"data\":{\"user\":{\"email\":\"anusha.m@algoshack.com\",\"password\":\"eyJhbGciOiJIUzI1NiJ9.U2VldGhhQDIybWFoZXNo.Ig47ZFACgigO8IdxG2xqGiWilaQVTw22ImCWsNPzTJs\"}}}},\"params\":{},\"data\":{\"user\":{\"email\":\"anusha.m@algoshack.com\",\"password\":\"eyJhbGciOiJIUzI1NiJ9.U2VldGhhQDIybWFoZXNo.Ig47ZFACgigO8IdxG2xqGiWilaQVTw22ImCWsNPzTJs\"}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/apiCall",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"apiCall"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ENV variable",
+			"item": [
+				{
+					"name": "Env variable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "filePath=../AlgoQA_Data/user_750/project_{{id}}/Configuration&filename=API-Gateway-SuperApp.postman_environment.json",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/uploadGlobalVarByProjectId/22161?filePath=../AlgoQA_Data/user_750/project_{{id}}/Configuration&filename=API-Gateway-SuperApp.postman_environment.json",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"uploadGlobalVarByProjectId",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "filePath",
+									"value": "../AlgoQA_Data/user_750/project_{{id}}/Configuration"
+								},
+								{
+									"key": "filename",
+									"value": "API-Gateway-SuperApp.postman_environment.json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Env Request Variable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getGlobalVarByProjectId/{{id}}",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getGlobalVarByProjectId",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Env Varible",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"variable\":\"Url\",\"value\":\"https://algoshack.net/\"},{\"variable\":\"basePath\",\"value\":\"https://test-apigate.abfrl.in/\"},{\"variable\":\"shopId\",\"value\":\"6\"},{\"variable\":\"trendinId\",\"value\":\"35\"},{\"variable\":\"customerId\",\"value\":\"2670\"},{\"variable\":\"deviceId\",\"value\":\"58de26-51a1-e4c-0e40-bd54ef417f\"},{\"variable\":\"deviceDesktop\",\"value\":\"desktop\"},{\"variable\":\"deviceMobile\",\"value\":\"mobile\"},{\"variable\":\"deviceApp\",\"value\":\"app\"},{\"variable\":\"deviceToken\",\"value\":\"339fb92c09575f1dc4f4f86336e6e8d6.1652424081\"},{\"variable\":\"hash\",\"value\":\"asdfasd\"},{\"variable\":\"fcmToken\",\"value\":\"asdfasda\"},{\"variable\":\"sessionId\",\"value\":\"99bd1319c34513dcceb156610d97daf4\"},{\"variable\":\"URLL\",\"value\":\"Testing\"}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateGlobalVarByProjectId/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateGlobalVarByProjectId",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "API settings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":{{id}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/get_status_apisetting",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"get_status_apisetting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit setting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"form\":{\"project_id\":{{id}},\"project_name\":\"{{randomstring}}\",\"Configuration_Data\":\"\",\"Configuration_Path\":\"\",\"project_url\":\"https://www.algoshack.com/\",\"home_page\":\"Home Page\",\"application_type_id\":5,\"selective_testcasegen\":null,\"settings\":{\"boundary_values\":false,\"bulk_upload\":false,\"correct_values\":true,\"data_generation_and_combination\":100,\"edge_cases\":false,\"id\":4,\"illegal_values\":false,\"incorrect_values\":false,\"invalid_values\":false,\"my_application_contains_pop_ups\":false,\"number_of_pop_ups\":0,\"project_id\":22161,\"registration_credential_for_testing_application\":false,\"remove_default_tags\":false,\"requirement_filter\":true,\"seprate_feature_based_on_requirements\":false,\"tolerance\":false,\"ui_based_automation\":true,\"api_based_automation\":false,\"load_based_automation\":false,\"customize_control\":false,\"customize_feature\":false,\"data_decoupling\":false,\"needBackup\":0,\"input_for_GWT_line\":\"I\",\"custom_action\":false}},\"projectId\":22161}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/edit_project",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"edit_project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AF API Settings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"user_id\":750,\"project_id\":{{id}},\"language_id\":13,\"framework_id\":22,\"report_type_id\":32,\"status\":1,\"createdAt\":\"2025-01-21T10:27:26.027Z\",\"updatedAt\":\"2025-01-21T10:27:26.027Z\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/settings/20888",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"settings",
+								"20888"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Business rule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"profile detailes status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"path\":\"../AlgoQA_Data/user_750/project_{{id}}/Configuration/BR_List_Api project non.json\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/getAPIbusinessRules",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"getAPIbusinessRules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save business rule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"path\":\"../AlgoQA_Data/user_750/project_22161/Configuration/BR_List_Api project non.json\",\"data\":[{\"name\":\"ApiName_ControlName\",\"list\":{\"avoidDataGeneration\":\"\",\"boundaryCondition1\":\"Enter valid value\",\"boundaryCondition2\":\"Enter valid value\",\"boundaryLength1\":\"Enter valid value\",\"boundaryLength2\":\"Enter valid value\",\"caseCondition\":\"NOT SELECTED\",\"caseSensitivity\":\"case-insensitive\",\"customBR\":\"\",\"dateFormat\":\"NOT SELECTED\",\"exactLen\":\"0\",\"illegalValue1\":\"Enter valid value\",\"illegalValue2\":\"Enter valid value\",\"illegalValue3\":\"Enter valid value\",\"illegalValue4\":\"Enter valid value\",\"illegalValue5\":\"Enter valid value\",\"incorrect1\":\"Enter valid value\",\"incorrectLength1\":\"Enter valid value\",\"incorrectLength2\":\"Enter valid value\",\"incorrectLength3\":\"Enter valid value\",\"incorrectLength4\":\"Enter valid value\",\"incorrectRange1\":\"Enter valid value\",\"incorrectRange2\":\"Enter valid value\",\"incorrectRange3\":\"Enter valid value\",\"incorrectRange4\":\"Enter valid value\",\"invalidValue1\":\"Enter valid value\",\"invalidValue2\":\"Enter valid value\",\"invalidValue3\":\"Enter valid value\",\"invalidValue4\":\"Enter valid value\",\"mandatoryParameters\":\"\",\"maxLen\":\"6\",\"maxVal\":\"12\",\"minLen\":\"1\",\"minVal\":\"8\",\"quotesAroundString\":\"N\",\"regEx\":\"^[a-zA-Z0-9]+$\",\"shouldBeDuplicate\":\"N\",\"spclCharacter\":\"NOT SELECTED\",\"step\":\"1\",\"stringType\":\"only alphabets\",\"customRegressionTypes\":\"invalid_boundary_illegal_incorrect\",\"negativeMessageVerification\":\"verify_Negative\"}}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/saveAPIbusinessRules",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"saveAPIbusinessRules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "back to main page",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Back to main offset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "limit=5&offset=1&search=",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/get_projects/22161?limit=5&offset=1&search=",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"get_projects",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
+									"value": "1"
+								},
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Check APi in Script",
+			"item": [
+				{
+					"name": "check request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"enable\":true}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateApiCollection/3259",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateApiCollection",
+								"3259"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection check",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"enable\":1,\"collection_name\":\"Chaining multi form data Copy\",\"projectId\":\"22161\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateCollection/3259",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateCollection",
+								"3259"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getCollections/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getCollections",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checking collection offset",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "isCollectionEnable=1&isApiEnable=1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getSequence/22161?isCollectionEnable=1&isApiEnable=1",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getSequence",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "isCollectionEnable",
+									"value": "1"
+								},
+								{
+									"key": "isApiEnable",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checking request collection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getApiByCollectionId/3259",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getApiByCollectionId",
+								"3259"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Edit API in Script page",
+			"item": [
+				{
+					"name": "edit API",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"enable\":1,\"name\":\"Login\",\"id\":38026,\"request\":{\"auth\":{\"type\":\"noauth\"},\"method\":\"post\",\"url\":\"https://algoshack.net/user/login/\",\"params\":[],\"header\":[{\"key\":\"Content-Type\",\"value\":\"application/json\"}],\"body\":{\"type\":\"raw\",\"raw\":{\"data\":\"{\\r\\n    \\\"user\\\": {\\r\\n        \\\"email\\\": \\\"anusha.m@algoshack.com\\\",\\r\\n        \\\"password\\\": \\\"eyJhbGciOiJIUzI1NiJ9.U2VldGhhQDIybWFoZXNo.Ig47ZFACgigO8IdxG2xqGiWilaQVTw22ImCWsNPzTJs\\\"\\r\\n    }\\r\\n}\"}},\"aliasUrl\":\"{{Url}}user/login/\"},\"Output\":\"NA\",\"storeResponseVariable\":\"ttttttttttt\",\"dataGeneration\":\"NA\",\"scenario_outline\":\"\",\"custom_tag\":\"\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateApi/38026",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateApi",
+								"38026"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Edit API",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "isCollectionEnable=1&isApiEnable=1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getSequence/22161?isCollectionEnable=1&isApiEnable=1",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getSequence",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "isCollectionEnable",
+									"value": "1"
+								},
+								{
+									"key": "isApiEnable",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "data check enbale",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"is_data_set\":true,\"enable\":1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateApi/38026",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateApi",
+								"38026"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get data set",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "isCollectionEnable=1&isApiEnable=1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getSequence/22161?isCollectionEnable=1&isApiEnable=1",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getSequence",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "isCollectionEnable",
+									"value": "1"
+								},
+								{
+									"key": "isApiEnable",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload data set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "filepath=../AlgoQA_Data/user_750/project_22161/Configuration",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/uploadDataset/38028?filepath=../AlgoQA_Data/user_750/project_22161/Configuration",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"uploadDataset",
+								"38028"
+							],
+							"query": [
+								{
+									"key": "filepath",
+									"value": "../AlgoQA_Data/user_750/project_22161/Configuration"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload data get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "isCollectionEnable=1&isApiEnable=1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getSequence/22161?isCollectionEnable=1&isApiEnable=1",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getSequence",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "isCollectionEnable",
+									"value": "1"
+								},
+								{
+									"key": "isApiEnable",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download data set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"responseType\":\"blob\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/downloadDataset/38028",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"downloadDataset",
+								"38028"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete data set",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"data_set\":\"[]\",\"enable\":1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateApi/38028",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateApi",
+								"38028"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete get data set",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "isCollectionEnable=1&isApiEnable=1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getSequence/22161?isCollectionEnable=1&isApiEnable=1",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getSequence",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "isCollectionEnable",
+									"value": "1"
+								},
+								{
+									"key": "isApiEnable",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update sequence",
+			"item": [
+				{
+					"name": "update sequnce",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"enable\":1,\"id\":38026,\"sequence_model\":0},{\"enable\":1,\"id\":38027,\"sequence_model\":1},{\"enable\":1,\"id\":38028,\"sequence_model\":2},{\"enable\":1,\"id\":38029,\"sequence_model\":3},{\"enable\":1,\"id\":38030,\"sequence_model\":4},{\"enable\":1,\"id\":38032,\"sequence_model\":5}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/updateSequence",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"updateSequence"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update collection Sequence",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getSequence/22161?isCollectionEnable=1&isApiEnable=1",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getSequence",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "isCollectionEnable",
+									"value": "1"
+								},
+								{
+									"key": "isApiEnable",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Script generation",
+			"item": [
+				{
+					"name": "Analysis script",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/analysis/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"analysis",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Progress script",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getProccess/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getProccess",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Script",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getProjectsById/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getProjectsById",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sequence Script",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "CollectionEnable=1&isApiEnable=1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/apiautomation/project/getSequence/22161?isCollectionEnable=1&isApiEnable=1",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"apiautomation",
+								"project",
+								"getSequence",
+								"22161"
+							],
+							"query": [
+								{
+									"key": "isCollectionEnable",
+									"value": "1"
+								},
+								{
+									"key": "isApiEnable",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Downlaod project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"path\":\"../AlgoQA_Data/user_750/project_22161\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/download_folder",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"download_folder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Script important",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":22161,\"ScriptGeneration\":\"ScriptGeneration_20250121114656927\",\"isImportant\":1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/setImportant",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"setImportant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "important get",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "download script",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"path\":\"AlgoQA_Data/user_750/project_22161/Script Generation/ScriptGeneration_20250121114656927.zip\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/isS3File",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"isS3File"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Testcase files",
+			"item": [
+				{
+					"name": "feature file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"filePath\":\"../AlgoQA_Data/user_750/project_22161/Test Cases/Api project non1_20250121114655/Chaining multi form data Copy.txt\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getFileData",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getFileData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get feature",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/project/getControlsandActions/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"getControlsandActions",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save feature file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"filePath\":\"../AlgoQA_Data/user_750/project_22161/Test Cases/Api project non1_20250121114655/Chaining multi form data Copy.txt\",\"data\":\"Feature: Api project non1_API Automation_SRS_TestCases_202501211146551\\n\\n@Login_api_api_1\\n@test001\\n@api_Login_api\\nScenario Outline: 1 to verify Login api\\nGiven I have access to API URL\\nWhen I set API endpoint '<URL>'\\nAnd I set API Method 'post'\\nAnd I set API Request '<api request>'\\nAnd I set API Headers '<api header>'\\nThen execute API and verify '<api output>'\\nWhen I store API variable '<store response variable>'\\n\\nExamples:\\n|SlNo.|URL|api request|api header|api output|store response variable|\\n|1|{{Url}}user/login/|{    \\\"user\\\": {        \\\"email\\\": \\\"anusha.m@algoshack.com\\\",        \\\"password\\\": \\\"eyJhbGciOiJIUzI1NiJ9.U2VldGhhQDIybWFoZXNo.Ig47ZFACgigO8IdxG2xqGiWilaQVTw22ImCWsNPzTJs\\\"    }}|Content-Type:application/json|NA|ttttttttttt|\\n\\n\\n#Total No. of Test Cases :1\\n\\n@Profile_api_api_2\\n@test002\\n@api_Profile_api\\nScenario Outline: 2 to verify Profile api\\nGiven I have access to API URL\\nWhen I set API endpoint '<URL>'\\nAnd I set API Method 'GET'\\nAnd I set API Request '<api request>'\\nAnd I set API Headers '<api header>'\\nThen execute API and verify '<api output>'\\nyyyuy\\n\\nExamples:\\n|SlNo.|URL|api request|api header|api output|\\n|1|Profile_URL|_empty_|Profile_apiheader|Profile_apioutput|\\n\\n\\n#Total No. of Test Cases :2\\n\\n@Create_project_api_api_3\\n@test003\\n@api_Create_project_api\\nScenario Outline: 3 to verify Create project api\\nGiven I have access to API URL\\nWhen I set API endpoint '<URL>'\\nAnd I set API Method 'POST'\\nAnd I set API Request '<api request>'\\nAnd I set API Headers '<api header>'\\nThen execute API and verify '<api output>'\\n\\nExamples:\\n|SlNo.|URL|api request|api header|api output|\\n|1|https://algoshack.net/project/create_project|{\\\"form\\\":{\\\"project_id\\\":\\\"40\\\",\\\"project_name\\\":\\\"Appi070\\\",\\\"Configuration_Data\\\":\\\"\\\",\\\"Configuration_Path\\\":\\\"\\\",\\\"User_Id\\\":\\\"1\\\",\\\"Updated_By\\\":\\\"\\\",\\\"project_url\\\":\\\"https://www.algoshack.com/\\\",\\\"home_page\\\":\\\"Home Page\\\",\\\"application_type_id\\\":5,\\\"application_domain_id\\\":1,\\\"customer_id\\\":1,\\\"settings\\\":{}}}|Content-Type:application/json,Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjc1MCwicm9sZUlkIjoiNCIsImZpcnN0TmFtZSI6IkFudXNoYSIsImxhc3ROYW1lIjoiIiwidXNlcl9pZCI6NzUwLCJ1c2VybmFtZSI6ImFudXNoYS5tQGFsZ29zaGFjay5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ3UUE5WnFWaGdVNVpadi9kdWdzem8uZ2t2dkxhb2g3dHc4RkpqbTZGOEZRcVZWVy9lZHNSSyIsInN0YXR1cyI6MSwib2xkX3Bhc3N3b3JkIjpudWxsLCJyb2xlX2lkIjoiNCIsIm90cCI6ODU1MywiZW1haWxWZXJmaWVkIjp0cnVlLCJjdXN0b21lcl9pZCI6IjEiLCJidXNpbmVzc191bml0Ijo0LCJyZWZyZXNoX3Rva2VuIjoiMzI2NTk4YzgtOWI0YS00MzgzLTkyNTMtMmE1N2U0NDhjYTZhIiwicmVmcmVzaF90b2tlbl9leHBpcnkiOiIyMDIzLTA4LTAyVDA3OjQxOjUzLjAwMFoiLCJwcm9maWxlX3BpYyI6IiIsInJlcG9ydGluZ19tYW5hZ2VyIjoiNjU2IiwiZ2VuZGVyIjoiZmVtYWxlIiwiY291bnRyeSI6IkluZGlhIiwiYXBwcm92YWwiOjEsInVzZXJfc3Vic2NyaXB0aW9uX2lkIjoxLCJtZXRlcmluZ19pZCI6NTAsImFwcHJvdmVkQnkiOjEsInVzZXJTdG9yYWdlIjo5NCwiY29tcGFueSI6bnVsbCwiY29sbGVnZSI6bnVsbCwiY3JlYXRlZEF0IjpudWxsLCJ1cGRhdGVkQXQiOiIyMDIzLTA3LTAzVDA5OjIzOjMxLjAwMFoiLCJpYXQiOjE2ODgzNzY0NjkuMjQ0LCJzY29wZSI6InVzZXIiLCJleHAiOjE2ODgzODAwNjkuMjQ0fQ.4g5bHaU5RidTXuD7GIxPfsUIIEv5RunG-5D2dlW8nIw|NA|\\n\\n\\n#Total No. of Test Cases :3\\n\\n@collection_api_api_4\\n@test004\\n@api_collection_api\\nScenario Outline: 4 to verify collection api\\nGiven I have access to API URL\\nWhen I set API endpoint '<URL>'\\nAnd I set API Method 'POST'\\nAnd I set API Request '<api request>'\\nAnd I set API Headers '<api header>'\\nThen execute API and verify '<api output>'\\n\\nExamples:\\n|SlNo.|URL|api request|api header|api output|\\n|1|collection_URL|collection_apirequest|collection_apiheader|collection_apioutput|\\n\\n\\n#Total No. of Test Cases :4\\n\\n@Request_api_api_5\\n@test005\\n@api_Request_api\\nScenario Outline: 5 to verify Request api\\nGiven I have access to API URL\\nWhen I set API endpoint '<URL>'\\nAnd I set API Method 'POST'\\nAnd I set API Request '<api request>'\\nAnd I set API Headers '<api header>'\\nThen execute API and verify '<api output>'\\n\\nExamples:\\n|SlNo.|URL|api request|api header|api output|\\n|1|Request_URL|Request_apirequest|Request_apiheader|Request_apioutput|\\n\\n\\n#Total No. of Test Cases :5\\n\\n@upload_api_api_6\\n@test006\\n@api_upload_api\\nScenario Outline: 6 to verify upload api\\nGiven I have access to API URL\\nWhen I set API endpoint '<URL>'\\nAnd I set API Method 'POST'\\nAnd I set API Request '<api request>'\\nAnd I set API Headers '<api header>'\\nThen execute API and verify '<api output>'\\n\\nExamples:\\n|SlNo.|URL|api request|api header|api output|\\n|1|upload_URL|upload_apirequest|upload_apiheader|upload_apioutput|\\n\\n\\n#Total No. of Test Cases :6\\n\\n\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/saveFileData",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"saveFileData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Env file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"filePath\":\"../AlgoQA_Data/user_750/project_22161/Test Cases/Api project non1_20250121114655/TestDataEnv.json\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getFileData",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getFileData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download feature file",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "filepath=../AlgoQA_Data/user_750/project_22161/Test%20Cases/Api%20project%20non1_20250121114655/Chaining%20multi%20form%20data%20Copy.txt",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/convertTxtToCsv?filepath=../AlgoQA_Data/user_750/project_22161/Test%20Cases/Api%20project%20non1_20250121114655/Chaining%20multi%20form%20data%20Copy.txt",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"convertTxtToCsv"
+							],
+							"query": [
+								{
+									"key": "filepath",
+									"value": "../AlgoQA_Data/user_750/project_22161/Test%20Cases/Api%20project%20non1_20250121114655/Chaining%20multi%20form%20data%20Copy.txt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Env fiile get",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Save ENV file data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"filePath\":\"../AlgoQA_Data/user_750/project_22161/Test Cases/Api project non1_20250121114655/TestDataEnv.json\",\"data\":[{\"variable\":\"Url\",\"value\":\"https://algoshack.net/\"},{\"variable\":\"basePath\",\"value\":\"https://test-apigate.abfrl.in/\"},{\"variable\":\"shopId\",\"value\":\"6\"},{\"variable\":\"trendinId\",\"value\":\"35\"},{\"variable\":\"customerId\",\"value\":\"2670\"},{\"variable\":\"deviceId\",\"value\":\"58de26-51a1-e4c-0e40-bd54ef417f\"},{\"variable\":\"deviceDesktop\",\"value\":\"desktop\"},{\"variable\":\"deviceMobile\",\"value\":\"mobile\"},{\"variable\":\"deviceApp\",\"value\":\"app\"},{\"variable\":\"deviceToken\",\"value\":\"339fb92c09575f1dc4f4f86336e6e8d6.1652424081\"},{\"variable\":\"hash\",\"value\":\"asdfasd\"},{\"variable\":\"fcmToken\",\"value\":\"asdfasda\"},{\"variable\":\"sessionId\",\"value\":\"99bd1319c34513dcceb156610d97daf4\"},{\"variable\":\"URLL\",\"value\":\"Testing\",\"i8uytrfd\":null}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/saveFileData",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"saveFileData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Underscore updated file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"path\":\"../AlgoQA_Data/user_750/project_22161/Test Cases/Api project non1_20250121114655/Api project non1_API Automation_SRS_TestCases_20250121114655_updated.xls\",\"index\":0}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/getExcelFileJson",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"getExcelFileJson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save the Underscore updated file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"path\":\"../AlgoQA_Data/user_750/project_22161/Test Cases/Api project non1_20250121114655/Api project non1_API Automation_SRS_TestCases_20250121114655_updated.xls\",\"projectId\":22161,\"data\":{\"0\":{\"data\":false,\"name\":\"Sheet1\"}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/saveJSONToExcelFile",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"saveJSONToExcelFile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "custpomize framework",
+			"item": [
+				{
+					"name": "Customize frame work",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "filePath=AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration&projectId=22161",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getCustomAttachment?filePath=AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration&projectId=22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getCustomAttachment"
+							],
+							"query": [
+								{
+									"key": "filePath",
+									"value": "AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration"
+								},
+								{
+									"key": "projectId",
+									"value": "22161"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lock file",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"filePath\":\"/home/ubuntu/AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium/AlgoAFScript/.project\",\"oldFilePath\":\"/home/ubuntu/AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium/Custom_ScriptGeneration-JAVA selenium\",\"userId\":750,\"userName\":\"Anusha M\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/lockFile",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"lockFile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get file data customiframework",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"22161\",\"filePath\":\"/home/ubuntu/AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium/AlgoAFScript/.project\",\"fileName\":\".project\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getFileData",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getFileData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save customize framework",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"22161\",\"filePath\":\"/home/ubuntu/AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium/AlgoAFScript/.project\",\"fileName\":\".project\",\"data\":\"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\r\\n<projectDescription>\\r\\n\\t<name>JavaSeleniumAlgoAfScripts</name>\\r\\n\\t<comment></comment>\\r\\n\\t<projects>\\r\\n\\t</projects>\\r\\n\\t<buildSpechhhhh\\r\\n\\t\\t<buildCommand>\\r\\n\\t\\t\\t<name>org.eclipse.jdt.core.javabuilder</name>\\r\\n\\t\\t\\t<arguments>\\r\\n\\t\\t\\t</arguments>\\r\\n\\t\\t</buildCommand>\\r\\n\\t\\t<buildCommand>\\r\\n\\t\\t\\t<name>org.eclipse.m2e.core.maven2Builder</name>\\r\\n\\t\\t\\t<arguments>\\r\\n\\t\\t\\t</arguments>\\r\\n\\t\\t</buildCommand>\\r\\n\\t</buildSpec>\\r\\n\\t<natures>\\r\\n\\t\\t<nature>org.eclipse.jdt.core.javanature</nature>\\r\\n\\t\\t<nature>org.eclipse.m2e.core.maven2Nature</nature>\\r\\n\\t</natures>\\r\\n</projectDescription>\\r\\n\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/saveFileData",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"saveFileData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all lock file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"folderPath\":\"../AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getAllLockedFiles",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getAllLockedFiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "filePath=..%2FAlgoQA_Data%2Fuser_750%2Fproject_22161%2FCustom_ScriptGeneration-JAVA%20selenium&projectId=22161",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/uploadCustomAttachment?filePath=..%2FAlgoQA_Data%2Fuser_750%2Fproject_22161%2FCustom_ScriptGeneration-JAVA%20selenium&projectId=22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"uploadCustomAttachment"
+							],
+							"query": [
+								{
+									"key": "filePath",
+									"value": "..%2FAlgoQA_Data%2Fuser_750%2Fproject_22161%2FCustom_ScriptGeneration-JAVA%20selenium"
+								},
+								{
+									"key": "projectId",
+									"value": "22161"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"22161\",\"folderPath\":\"../AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium\",\"fileName\":\"testiiiiii\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/createFile",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"createFile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create get file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"22161\",\"folderPath\":\"../AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getFiles",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getFiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload file customizeframework",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "filePath=..%2FAlgoQA_Data%2Fuser_750%2Fproject_22161%2FCustom_ScriptGeneration-JAVA%20selenium",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/uploadCodeFile?filePath=..%2FAlgoQA_Data%2Fuser_750%2Fproject_22161%2FCustom_ScriptGeneration-JAVA%20selenium",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"uploadCodeFile"
+							],
+							"query": [
+								{
+									"key": "filePath",
+									"value": "..%2FAlgoQA_Data%2Fuser_750%2Fproject_22161%2FCustom_ScriptGeneration-JAVA%20selenium"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"folderPath\":\"../AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium\",\"folderName\":\"Testinhgy\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/createFolder",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"createFolder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getfile data in folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"22161\",\"folderPath\":\"../AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getFiles",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getFiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unlock file customizeframework",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"filePath\":\"/home/ubuntu/AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium/AlgoAFScript/.project\",\"userId\":750}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/unLockFile",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"unLockFile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rename file",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get file for Rename",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"22161\",\"folderPath\":\"../AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/getFiles",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"getFiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete cust",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":\"22161\",\"filePath\":\"/home/ubuntu/AlgoQA_Data/user_750/project_22161/Custom_ScriptGeneration-JAVA selenium/Create projeceeet.csv\",\"fileName\":\"Create projeceeet.csv\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/algoAF/project/deleteFile",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"algoAF",
+								"project",
+								"deleteFile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assign project",
+			"item": [
+				{
+					"name": "checklist for assign project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":22161}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/checkAccessSettingStatus",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"checkAccessSettingStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch all user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/user/fetch_all_users",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"user",
+								"fetch_all_users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"project_id\":22161,\"user_id\":2458,\"application_type_id\":5}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/assign_unassign_project",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"assign_unassign_project"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check the access setting for assinee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":2458,\"projectId\":22161}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/getProjectAccess/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"getProjectAccess",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the access setting list user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"canAdd\":1,\"canEdit\":1,\"canDelete\":0,\"feature\":\"file\",\"userId\":2458}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/updateProjectAccess/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"updateProjectAccess",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "notification for assign project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"category\":\"Project\",\"title\":\"Access Setting\",\"message\":\"Anusha M  changed your access setting of CT Philips 21 Jan Project\",\"type\":\"success\",\"toUser\":\"5\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/notification/addNotification",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"notification",
+								"addNotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "access setting status for assinee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":2458,\"projectId\":22161}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/checkAccessSettingStatus",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"checkAccessSettingStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "copy project",
+			"item": [
+				{
+					"name": "copy project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"project_id\":22161,\"newName\":\"TESTING API JAN 21\",\"application_type_id\":5}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/copy_project",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"copy_project"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "access settings",
+			"item": [
+				{
+					"name": "access setting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/getProjectAccess/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"getProjectAccess",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update script access setting",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"canEdit\":0,\"feature\":\"scriptChanges\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/updateProjectAccessSetting/22161",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"updateProjectAccessSetting",
+								"22161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "asscess file",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"canAdd\":0,\"canEdit\":1,\"canDelete\":0,\"feature\":\"file\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/updateProjectAccessSetting/22467",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"updateProjectAccessSetting",
+								"22467"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "notification file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"category\":\"Project\",\"title\":\"Access Setting\",\"message\":\"Anusha M  changed your access setting of Project new{{randomString}} Project\",\"type\":\"success\",\"toUser\":\"5\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/notification/addNotification",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"notification",
+								"addNotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "file status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://algoshack.net/project/checkAccessSettingStatus",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"checkAccessSettingStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletefileaccess",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"canAdd\":0,\"canEdit\":1,\"canDelete\":1,\"feature\":\"file\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/updateProjectAccessSetting/22467",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"updateProjectAccessSetting",
+								"22467"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletefilenotification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"category\":\"Project\",\"title\":\"Access Setting\",\"message\":\"Anusha M  changed your access setting of Project newk8v7isbd Project\",\"type\":\"success\",\"toUser\":\"5\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/notification/addNotification",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"notification",
+								"addNotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project permission",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"canAdd\":1,\"canEdit\":0,\"canDelete\":1,\"feature\":\"project\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/updateProjectAccessSetting/22467",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"updateProjectAccessSetting",
+								"22467"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project notification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"category\":\"Project\",\"title\":\"Access Setting\",\"message\":\"Anusha M  changed your access setting of Project newk8v7isbd Project\",\"type\":\"success\",\"toUser\":\"5\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/notification/addNotification",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"notification",
+								"addNotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":750,\"projectId\":22467}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/checkAccessSettingStatus",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"checkAccessSettingStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection access",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"canAdd\":0,\"canEdit\":1,\"canDelete\":1,\"feature\":\"collection\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/updateProjectAccessSetting/22467\n",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"updateProjectAccessSetting",
+								"22467\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection notification",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"category\":\"Project\",\"title\":\"Access Setting\",\"message\":\"Anusha M  changed your access setting of Project newk8v7isbd Project\",\"type\":\"success\",\"toUser\":\"5\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/notification/addNotification",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"notification",
+								"addNotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "collection status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":750,\"projectId\":22467}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://algoshack.net/project/checkAccessSettingStatus",
+							"protocol": "https",
+							"host": [
+								"algoshack",
+								"net"
+							],
+							"path": [
+								"project",
+								"checkAccessSettingStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

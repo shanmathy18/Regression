@@ -1,0 +1,67 @@
+Home Page:
+   loginPagepagetitle: "login"
+Dashboard page:
+   AlgoQADashboardlabelLabelXPATH: "//div[contains(@class,'MuiStack-root')]"
+Node Configuration page:
+   ControlNametextboxTextBoxXPATH: "(//input[@name='control_name'])[1]"
+   featurename1ButtonXPATH: "(//ul[(@id='all_features')]//p[contains(@class,'MuiTypography-root MuiTypography-body2')])[1]"
+   copiedcontrolnameTextBoxXPATH: "(//input[@name='control_name'])[1]"
+Login Page:
+   EnteryouremailTextBoxXPATH: "//input[@name='email']"
+   EnteryourpasswordTextBoxXPATH: "//input[@name='password']"
+   LoginButtonButtonXPATH: "//button[contains(.,'Login')]"
+   UsersignedinsuccessfullypopupLabelXPATH: "//div[contains(@class,'MuiAlert-message')]"
+   ContinueLoginButtonXPATH: "//button[contains(.,'Continue Login')]"
+Algoshack:
+   LogintoalgoQALabelXPATH: "//h3[contains(.,'Login to')]"
+   NodeButtonXPATH: "//p[@id='node_name_move_to_node_configuration']"
+   ProjectlistlabelButtonXPATH: "//h5[contains(text(),'Project List')]"
+   ScenariolabelLabelXPATH: "//h5[contains(.,'Scenario')]"
+   SearchedprojectButtonXPATH: "//td/button/p[contains(@class,'MuiTypography-root MuiTypography-body2 css')]"
+   CloneProjectsubmitbuttonButtonXPATH: "//button[contains(.,'Clone Project')]"
+   DeletebuttonButtonXPATH: "//button[contains(.,'Delete')]"
+   DeleteprojectButtonXPATH: "//span[contains(text(),'Delete')]"
+   ProjectcopiedsuccessfullyLabelXPATH: "(//div[contains(.,'Project copied successfully')])[13]"
+   projectdeletedSuccessfullypopupLabelXPATH: "//div[contains(text(),'Project deleted successfully')]"
+   SpecifyanameforacopiedprojectLabelXPATH: "//span[contains(.,'Specify a name for a copied project')]"
+   errormsgforprojectnameTextBoxXPATH: "//p[contains(@class, 'MuiFormHelperText-root') and contains(@class, 'Mui-error')]  |  (//div[contains(@class, 'MuiAlert-message')])[2]"
+   SettingsupdatedsuccessfullyLabelXPATH: "(//div[contains(text(),'Settings updated successfully!')])"
+   DefaultpagepageTitle: ""
+   messageLabeltext: ""
+Canvas page:
+   NodenameLinkXPATH: "(//p[contains(@title,'Click to configure')])[last()]"
+Left Navigation bar:
+   ProjectsIconButtonXPATH: "//img[@alt='Projects Icon']"
+AlgoQA:
+   reacttourskipbuttonButtonXPATH: "//button[@class='skip_all_tour']"
+Project list page:
+   SearchprojectsTextBoxXPATH: "//input[@placeholder='Search projects']"
+   Searchedproject3dotsButtonXPATH: "(//*[name()='svg'][@class='svg-inline--fa fa-ellipsis-vertical '])[2]"
+   ClonebuttonButtonXPATH: "//li[contains(.,'Clone')]"
+Project menu:
+   TestDesigniconButtonXPATH: "//img[@alt='Test Design Icon']"
+   SettingsiconButtonXPATH: "//img[@alt='Settings Icon']"
+New Feature:
+   cloneButtonXPATH: "(//span[contains(.,'Clone')])[2]"
+   cloneprojectlabelLabelXPATH: "//h6[contains(.,'Clone Project')]"
+   ProjectNameforcloneTextBoxXPATH: "//input[@name='projectName']"
+   GenerateTestCasebuttonButtonXPATH: "(//span[contains(.,'Generate TestCase')])[2]"
+Scenario edit page:
+   copiedscenarionameTextBoxXPATH: "//input[@name='scenario_name']"
+   ScenarionametextfieldTextBoxXPATH: "//input[@name='scenario_name']"
+   LastScenarioCheckBoxCheckBoxXPATH: "(//input[@type='checkbox'])[last()]"
+Edit Scenario page:
+   EditscenariobuttonButtonXPATH: "//*[name()='svg'][@class='svg-inline--fa fa-pencil ']"
+Scenarios list page:
+   scenarioeditbuttonButtonXPATH: "(//*[name()='svg'][@class='svg-inline--fa fa-pencil '])[1]"
+Forgot Password page:
+   forsometimeTextBoxXPATH: "//input[@name='email']"
+Generate test window:
+   TestCasesGeneratedSuccessfullyLabelXPATH: "//h6[contains(.,'Test Cases Generated Successfully!')]"
+   generate_script_buttonButtonXPATH: "//button[contains(.,'Generate Script')]"
+   ScriptsGeneratedSuccessfullyLabelXPATH: "//h4[contains(.,'Scripts Generated Successfully!')]"
+New Feature8:
+   ProjectSettingsLinkXPATH: "//button[@id='simple-tab-0']"
+Project Settings tab:
+   UpdateButtonXPATH: "//button[contains(.,'Update')]"
+   SettingsProjectNameTextboxTextBoxXPATH: "(//input[@id='outlined-basic'])[1]"
